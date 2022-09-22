@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Layout from './components/layout/Layout';
 import HomePage from './components/pages/HomePage';
+import SignIn from './components/pages/SignIn';
 import CustomThemeProvider from './CustomThemeProvider';
 
 function App() {
@@ -13,7 +13,8 @@ function App() {
     <CustomThemeProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path='/' element={<SignIn />} />
+          <Route path='/Homepage' element={<HomePage />} />
         </Routes>
       </BrowserRouter>
     </CustomThemeProvider>
