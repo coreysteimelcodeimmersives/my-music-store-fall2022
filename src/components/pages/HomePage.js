@@ -3,13 +3,18 @@ import { productList } from '../../mockData';
 import Layout from '../layout/Layout';
 import ProductDisplay from '../ProductDisplay';
 
-function HomePage() {
+function HomePage({ user, signIn, shoppingCart, setShoppingCart }) {
+  console.log('sign in ', signIn);
   return (
-    <Layout>
-      <Box display="flex" flexDirection="column" alignItems="center">
-        {productList.map((product) => (
-          <Box mb={6} bgcolor="pink">
-            <ProductDisplay productData={product} />
+    <Layout user={user} signIn={signIn}>
+      <Box display='flex' flexDirection='column' alignItems='center'>
+        {productList.map((product, idx) => (
+          <Box key={`${idx}-${product}`} mb={6} bgcolor='pink'>
+            <ProductDisplay
+              productData={product}
+              shoppingCart={shoppingCart}
+              setShoppingCart={setShoppingCart}
+            />
           </Box>
         ))}
       </Box>

@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
-const UserName = () => {
+const UserName = ({ user, setUser }) => {
   return (
     <Box
       sx={{
@@ -14,7 +14,7 @@ const UserName = () => {
     >
       <TextField
         id='input-with-icon-textfield'
-        label='Username'
+        label='Email'
         InputProps={{
           startAdornment: (
             <InputAdornment position='start'>
@@ -24,6 +24,10 @@ const UserName = () => {
         }}
         variant='outlined'
         sx={{ width: '30vw' }}
+        onChange={(e) => {
+          const email = e.target.value;
+          setUser({ ...user, email });
+        }}
       />
     </Box>
   );

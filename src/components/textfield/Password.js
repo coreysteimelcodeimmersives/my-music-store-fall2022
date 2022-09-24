@@ -9,11 +9,12 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-export default function InputAdornments() {
-  const [password, setPassword] = useState('');
+export default function Password({ user, setUser }) {
+  const [password, setPassword] = useState({ password: '' });
 
   const handleChange = (prop) => (event) => {
     setPassword({ ...password, [prop]: event.target.value });
+    setUser({ ...user, password: event.target.value });
   };
 
   const handleClickShowPassword = () => {
