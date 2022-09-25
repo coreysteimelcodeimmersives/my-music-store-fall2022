@@ -15,10 +15,42 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Box, Button } from '@mui/material';
+import ShoppingCart from '@mui/icons-material/ShoppingCart';
 
 function ProductDisplay(props) {
   const { productData } = props;
-
+  const handleAddToCart = (productData) => {
+    const copyShoppingCart = { ...props.shoppingCart };
+    const updateCartItems = copyShoppingCart.items + 1;
+    const copyProducts = { ...copyShoppingCart.products };
+    if (productData.id in copyProducts) {
+      const copyItem = { ...copyProducts[productData.id] };
+      const updateCount = copyItem.count + 1;
+      const updateCopyItem = { ...copyItem, count: updateCount };
+      const updateCopyProducts = {
+        ...copyProducts,
+        [productData.id]: updateCopyItem,
+      };
+      const updateCopyShoppingCart = {
+        ...copyShoppingCart,
+        products: updateCopyProducts,
+        items: updateCartItems,
+      };
+      props.setShoppingCart(updateCopyShoppingCart);
+    } else {
+      const newProduct = { ...productData, count: 1 };
+      const updateCopyProducts = {
+        ...copyProducts,
+        [productData.id]: newProduct,
+      };
+      const updateCopyShoppingCart = {
+        ...copyShoppingCart,
+        products: updateCopyProducts,
+        items: updateCartItems,
+      };
+      props.setShoppingCart(updateCopyShoppingCart);
+    }
+  };
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader title={productData.title} subheader={productData.brand} />
@@ -39,7 +71,7 @@ function ProductDisplay(props) {
         <Box display='flex' justifyContent='space-between' width={1}>
           <Button
             onClick={() => {
-              props.setShoppingCart([...props.shoppingCart, productData]);
+              handleAddToCart(productData);
             }}
           >
             Add to cart

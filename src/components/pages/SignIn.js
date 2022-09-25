@@ -5,11 +5,11 @@ import Password from '../textfield/Password';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../layout/Layout';
 
-const SignIn = ({ user, setUser, signIn, setSignIn }) => {
+const SignIn = ({ user, setUser, signIn, setSignIn, shoppingCart }) => {
   const navigate = useNavigate();
 
   return (
-    <Layout user={user} signIn={signIn}>
+    <Layout user={user} signIn={signIn} shoppingCart={shoppingCart}>
       <Box
         display={'flex'}
         flexDirection={'column'}

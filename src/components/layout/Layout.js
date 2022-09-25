@@ -8,7 +8,11 @@ function Layout(props) {
   return (
     <Box display='flex' flexDirection='column' minHeight='100vh'>
       <Box>
-        <Header user={props.user} signIn={props.signIn} />
+        <Header
+          user={props.user}
+          signIn={props.signIn}
+          shoppingCart={props.shoppingCart}
+        />
       </Box>
       <Box flexGrow={1} py={6}>
         {children}

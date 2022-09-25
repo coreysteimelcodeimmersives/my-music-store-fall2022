@@ -14,9 +14,21 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Avatar } from '@mui/material';
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
 
-export default function MenuAppBar({ user, signIn }) {
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
+
+export default function MenuAppBar({ user, signIn, shoppingCart }) {
   const navigate = useNavigate();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='static' bgcolor='red'>
@@ -58,8 +70,17 @@ export default function MenuAppBar({ user, signIn }) {
               aria-controls='menu-appbar'
               aria-haspopup='true'
               color='inherit'
+              onClick={() => {
+                navigate('/cart');
+              }}
             >
-              <ShoppingCartIcon />
+              <StyledBadge
+                // Object.keys(shoppingCart).length
+                badgeContent={shoppingCart.items}
+                color='secondary'
+              >
+                <ShoppingCartIcon />
+              </StyledBadge>
             </IconButton>
           </div>
         </Toolbar>

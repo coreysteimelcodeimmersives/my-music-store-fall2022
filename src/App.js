@@ -11,7 +11,10 @@ import { sampleUserData } from './mockData';
 function App() {
   const [user, setUser] = useState({ ...sampleUserData });
   const [signIn, setSignIn] = useState(false);
-  const [shoppingCart, setShoppingCart] = useState();
+  const [shoppingCart, setShoppingCart] = useState({
+    products: {},
+    items: 0,
+  });
 
   return (
     <CustomThemeProvider>
@@ -25,6 +28,7 @@ function App() {
                 setUser={setUser}
                 signIn={signIn}
                 setSignIn={setSignIn}
+                shoppingCart={shoppingCart}
               />
             }
           />
@@ -41,7 +45,14 @@ function App() {
           />
           <Route
             path='/cart'
-            element={<CartPage shoppingCart={shoppingCart} />}
+            element={
+              <CartPage
+                user={user}
+                signIn={signIn}
+                shoppingCart={shoppingCart}
+                setShoppingCart={setShoppingCart}
+              />
+            }
           />
         </Routes>
       </BrowserRouter>
