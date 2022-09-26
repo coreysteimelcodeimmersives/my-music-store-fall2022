@@ -14,7 +14,7 @@ function Layout(props) {
           shoppingCart={props.shoppingCart}
         />
       </Box>
-      <Box flexGrow={1} py={6}>
+      <Box flexGrow={1} py={12}>
         {children}
       </Box>
       <Box>

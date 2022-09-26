@@ -5,13 +5,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Avatar } from '@mui/material';
 import Badge from '@mui/material/Badge';
@@ -28,9 +22,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export default function MenuAppBar({ user, signIn, shoppingCart }) {
   const navigate = useNavigate();
-
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} position={'fixed'} width={'100%'}>
       <AppBar position='static' bgcolor='red'>
         <Toolbar>
           <Typography
@@ -74,11 +67,7 @@ export default function MenuAppBar({ user, signIn, shoppingCart }) {
                 navigate('/cart');
               }}
             >
-              <StyledBadge
-                // Object.keys(shoppingCart).length
-                badgeContent={shoppingCart.items}
-                color='secondary'
-              >
+              <StyledBadge badgeContent={shoppingCart.items} color='secondary'>
                 <ShoppingCartIcon />
               </StyledBadge>
             </IconButton>
