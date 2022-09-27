@@ -9,7 +9,12 @@ const CartItem = ({ shoppingCart, setShoppingCart, productKey }) => {
     const copyProducts = { ...copyShoppingCart.products };
     const copyItem = { ...copyProducts[productKey] };
     const updateCount = copyItem.count - 1;
-    const updateCopyItem = { ...copyItem, count: updateCount };
+    const updateTotal = updateCount * copyItem.price;
+    const updateCopyItem = {
+      ...copyItem,
+      count: updateCount,
+      total: updateTotal,
+    };
     const updateCopyProducts = {
       ...copyProducts,
       [productKey]: updateCopyItem,
@@ -38,7 +43,7 @@ const CartItem = ({ shoppingCart, setShoppingCart, productKey }) => {
         <Box padding={'5px'}>
           <div>{shoppingCart.products[productKey].title}</div>
         </Box>
-        <div>${shoppingCart.products[productKey].price}</div>
+        <div>${shoppingCart.products[productKey].total}</div>
       </Box>
       <Box
         padding={'5px'}

@@ -31,7 +31,10 @@ export default function Password({ user, setUser }) {
   return (
     <Box sx={{ display: 'flex', margin: '1%' }}>
       <div>
-        <FormControl sx={{ width: '30vw' }} variant='outlined'>
+        <FormControl
+          variant='outlined'
+          // sx={{ width: '30vw' }}
+        >
           <InputLabel htmlFor='outlined-adornment-password'>
             Password
           </InputLabel>

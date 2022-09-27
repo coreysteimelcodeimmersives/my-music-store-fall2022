@@ -29,7 +29,6 @@ const SignIn = ({ user, setUser, signIn, setSignIn, shoppingCart }) => {
             if (!signIn) {
               setSignIn(true);
               navigate('/home');
-              console.log(user);
               return;
             } else {
               setSignIn(false);

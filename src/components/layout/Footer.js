@@ -4,12 +4,15 @@ function Footer() {
   return (
     <Box
       bgcolor='#17637B'
-      p='40px'
       position={'fixed'}
       top={'90vh'}
+      height={'10vh'}
+      display={'flex'}
+      alignItems={'center'}
+      justifyContent={'center'}
       width={'100%'}
     >
-      <Typography fontWeight='bold' align='center' color='white'>
+      <Typography fontWeight='bold' color='white'>
         MyMusicStore.com
       </Typography>
     </Box>

@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import Footer from './Footer';
 import Header from './Header';
 
-function Layout(props) {
+const Layout = (props) => {
   const { children } = props;
 
   return (
@@ -22,6 +22,6 @@ function Layout(props) {
       </Box>
     </Box>
   );
-}
+};
 
 export default Layout;

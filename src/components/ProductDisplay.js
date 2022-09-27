@@ -18,7 +18,12 @@ function ProductDisplay(props) {
     if (productData.id in copyProducts) {
       const copyItem = { ...copyProducts[productData.id] };
       const updateCount = copyItem.count + 1;
-      const updateCopyItem = { ...copyItem, count: updateCount };
+      const updateTotal = updateCount * productData.price;
+      const updateCopyItem = {
+        ...copyItem,
+        count: updateCount,
+        total: updateTotal,
+      };
       const updateCopyProducts = {
         ...copyProducts,
         [productData.id]: updateCopyItem,
@@ -30,7 +35,7 @@ function ProductDisplay(props) {
       };
       props.setShoppingCart(updateCopyShoppingCart);
     } else {
-      const newProduct = { ...productData, count: 1 };
+      const newProduct = { ...productData, count: 1, total: productData.price };
       const updateCopyProducts = {
         ...copyProducts,
         [productData.id]: newProduct,

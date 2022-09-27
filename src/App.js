@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import MenuAppBar from './components/layout/Header';
 import CartPage from './components/pages/CartPage';
 import HomePage from './components/pages/HomePage';
 import SignIn from './components/pages/SignIn';

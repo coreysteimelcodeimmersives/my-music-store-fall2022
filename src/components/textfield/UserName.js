@@ -23,7 +23,7 @@ const UserName = ({ user, setUser }) => {
           ),
         }}
         variant='outlined'
-        sx={{ width: '30vw' }}
+        // sx={{ width: '50vw' }}
         onChange={(e) => {
           const email = e.target.value;
           setUser({ ...user, email });
