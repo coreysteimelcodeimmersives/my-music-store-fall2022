@@ -8,11 +8,7 @@ const Layout = (props) => {
   return (
     <Box display='flex' flexDirection='column' minHeight='100vh'>
       <Box>
-        <Header
-          user={props.user}
-          signIn={props.signIn}
-          shoppingCart={props.shoppingCart}
-        />
+        <Header />
       </Box>
       <Box flexGrow={1} py={12}>
         {children}

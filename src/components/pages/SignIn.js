@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Box, Button } from '@mui/material';
 import UserName from '../textfield/UserName';
 import Password from '../textfield/Password';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../layout/Layout';
+import { UserContext } from '../../context/UserContext';
 
-const SignIn = ({ user, setUser, signIn, setSignIn, shoppingCart }) => {
+const SignIn = () => {
   const navigate = useNavigate();
+  const { signIn, setSignIn } = useContext(UserContext);
 
   return (
-    <Layout user={user} signIn={signIn} shoppingCart={shoppingCart}>
+    <Layout>
       <Box
         display={'flex'}
         flexDirection={'column'}
@@ -19,8 +21,8 @@ const SignIn = ({ user, setUser, signIn, setSignIn, shoppingCart }) => {
       >
         {!signIn && (
           <>
-            <UserName user={user} setUser={setUser}></UserName>
-            <Password user={user} setUser={setUser}></Password>
+            <UserName></UserName>
+            <Password></Password>
           </>
         )}
         <Button

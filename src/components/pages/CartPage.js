@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Layout from '../layout/Layout';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -6,6 +6,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 import CartItem from '../cart/CartItem';
+import { ShoppingCartContext } from '../../context/ShoppingCartContext';
 
 function HomeIcon(props) {
   return (
@@ -15,22 +16,19 @@ function HomeIcon(props) {
   );
 }
 
-const CartPage = ({ user, signIn, shoppingCart, setShoppingCart }) => {
+const CartPage = () => {
   const navigate = useNavigate();
+  const { shoppingCart, setShoppingCart } = useContext(ShoppingCartContext);
   const productsArr = Object.keys(shoppingCart.products);
   return (
-    <Layout user={user} signIn={signIn} shoppingCart={shoppingCart}>
+    <Layout>
       <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
         {productsArr.map((productKey, idx) => {
           const productCount = shoppingCart.products[productKey].count;
           return (
             <div key={`${idx}-${productKey}`}>
               {productCount > 0 && (
-                <CartItem
-                  shoppingCart={shoppingCart}
-                  setShoppingCart={setShoppingCart}
-                  productKey={productKey}
-                ></CartItem>
+                <CartItem productKey={productKey}></CartItem>
               )}
             </div>
           );

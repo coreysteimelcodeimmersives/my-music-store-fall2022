@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -8,9 +8,11 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { UserContext } from '../../context/UserContext';
 
-export default function Password({ user, setUser }) {
+export default function Password() {
   const [password, setPassword] = useState({ password: '' });
+  const { user, setUser } = useContext(UserContext);
 
   const handleChange = (prop) => (event) => {
     setPassword({ ...password, [prop]: event.target.value });

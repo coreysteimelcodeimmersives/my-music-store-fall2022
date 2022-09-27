@@ -8,11 +8,14 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Box, Button } from '@mui/material';
+import { useContext } from 'react';
+import { ShoppingCartContext } from '../../context/ShoppingCartContext';
 
 function ProductDisplay(props) {
+  const { shoppingCart, setShoppingCart } = useContext(ShoppingCartContext);
   const { productData } = props;
   const handleAddToCart = (productData) => {
-    const copyShoppingCart = { ...props.shoppingCart };
+    const copyShoppingCart = { ...shoppingCart };
     const updateCartItems = copyShoppingCart.items + 1;
     const copyProducts = { ...copyShoppingCart.products };
     if (productData.id in copyProducts) {
@@ -33,7 +36,7 @@ function ProductDisplay(props) {
         products: updateCopyProducts,
         items: updateCartItems,
       };
-      props.setShoppingCart(updateCopyShoppingCart);
+      setShoppingCart(updateCopyShoppingCart);
     } else {
       const newProduct = { ...productData, count: 1, total: productData.price };
       const updateCopyProducts = {
@@ -45,7 +48,7 @@ function ProductDisplay(props) {
         products: updateCopyProducts,
         items: updateCartItems,
       };
-      props.setShoppingCart(updateCopyShoppingCart);
+      setShoppingCart(updateCopyShoppingCart);
     }
   };
   return (
