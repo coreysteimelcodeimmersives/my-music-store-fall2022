@@ -3,10 +3,10 @@ import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { UserContext } from '../../context/UserContext';
+import { useUserContext } from '../../context/UserContext';
 
 const UserName = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useUserContext();
   return (
     <Box
       sx={{

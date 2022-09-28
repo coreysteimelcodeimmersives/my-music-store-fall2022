@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Layout from '../layout/Layout';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -6,7 +6,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 import CartItem from '../cart/CartItem';
-import { ShoppingCartContext } from '../../context/ShoppingCartContext';
+import { useShoppingCartContext } from '../../context/ShoppingCartContext';
 
 function HomeIcon(props) {
   return (
@@ -18,7 +18,7 @@ function HomeIcon(props) {
 
 const CartPage = () => {
   const navigate = useNavigate();
-  const { shoppingCart, setShoppingCart } = useContext(ShoppingCartContext);
+  const { shoppingCart, setShoppingCart } = useShoppingCartContext();
   const productsArr = Object.keys(shoppingCart.products);
   return (
     <Layout>

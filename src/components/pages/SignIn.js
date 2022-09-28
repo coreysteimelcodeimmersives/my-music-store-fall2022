@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Box, Button } from '@mui/material';
 import UserName from '../textfield/UserName';
 import Password from '../textfield/Password';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../layout/Layout';
-import { UserContext } from '../../context/UserContext';
+import { useUserContext } from '../../context/UserContext';
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { signIn, setSignIn } = useContext(UserContext);
+  const { signIn, setSignIn } = useUserContext();
 
   return (
     <Layout>

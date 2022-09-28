@@ -8,11 +8,10 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Box, Button } from '@mui/material';
-import { useContext } from 'react';
-import { ShoppingCartContext } from '../../context/ShoppingCartContext';
+import { useShoppingCartContext } from '../../context/ShoppingCartContext';
 
 function ProductDisplay(props) {
-  const { shoppingCart, setShoppingCart } = useContext(ShoppingCartContext);
+  const { shoppingCart, setShoppingCart } = useShoppingCartContext();
   const { productData } = props;
   const handleAddToCart = (productData) => {
     const copyShoppingCart = { ...shoppingCart };

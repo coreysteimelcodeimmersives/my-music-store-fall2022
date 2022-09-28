@@ -10,9 +10,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Avatar } from '@mui/material';
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
-import { useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
-import { ShoppingCartContext } from '../../context/ShoppingCartContext';
+import { useUserContext } from '../../context/UserContext';
+import { useShoppingCartContext } from '../../context/ShoppingCartContext';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -25,8 +24,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export default function MenuAppBar() {
   const navigate = useNavigate();
-  const { user, signIn } = useContext(UserContext);
-  const { shoppingCart } = useContext(ShoppingCartContext);
+  const { user, signIn } = useUserContext();
+  const { shoppingCart } = useShoppingCartContext();
   return (
     <Box sx={{ flexGrow: 1 }} position={'fixed'} width={'100%'}>
       <AppBar position='static' bgcolor='red'>

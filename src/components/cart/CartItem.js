@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { ShoppingCartContext } from '../../context/ShoppingCartContext';
+import { useShoppingCartContext } from '../../context/ShoppingCartContext';
 
 const CartItem = ({ productKey }) => {
-  const { shoppingCart, setShoppingCart } = useContext(ShoppingCartContext);
+  const { shoppingCart, setShoppingCart } = useShoppingCartContext();
   const handleDeleteItem = (productKey) => {
     const copyShoppingCart = { ...shoppingCart };
     const updateCartItems = copyShoppingCart.items - 1;

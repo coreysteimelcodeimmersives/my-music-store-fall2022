@@ -1,7 +1,9 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import { sampleUserData } from '../mockData';
 
 export const UserContext = createContext();
+
+export const useUserContext = () => useContext(UserContext);
 
 const UserContextProvider = (props) => {
   const { children } = props;
