@@ -10,19 +10,19 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useUserContext } from '../../context/UserContext';
 
-export default function Password() {
-  const [password, setPassword] = useState({ password: '' });
-  const { user, setUser } = useUserContext();
+export default function Password({ setPassword }) {
+  const [passwordText, setPasswordText] = useState({ password: '' });
+  const { user, signIn, signOut } = useUserContext();
 
   const handleChange = (prop) => (event) => {
-    setPassword({ ...password, [prop]: event.target.value });
-    setUser({ ...user, password: event.target.value });
+    setPasswordText({ ...passwordText, [prop]: event.target.value });
+    setPassword(passwordText);
   };
 
   const handleClickShowPassword = () => {
-    setPassword({
-      ...password,
-      showPassword: !password.showPassword,
+    setPasswordText({
+      ...passwordText,
+      showPassword: !passwordText.showPassword,
     });
   };
 
@@ -42,8 +42,8 @@ export default function Password() {
           </InputLabel>
           <OutlinedInput
             id='outlined-adornment-password'
-            type={password.showPassword ? 'text' : 'password'}
-            value={password.password}
+            type={passwordText.showPassword ? 'text' : 'password'}
+            value={passwordText.password}
             onChange={handleChange('password')}
             endAdornment={
               <InputAdornment position='end'>
@@ -53,7 +53,11 @@ export default function Password() {
                   onMouseDown={handleMouseDownPassword}
                   edge='end'
                 >
-                  {password.showPassword ? <VisibilityOff /> : <Visibility />}
+                  {passwordText.showPassword ? (
+                    <VisibilityOff />
+                  ) : (
+                    <Visibility />
+                  )}
                 </IconButton>
               </InputAdornment>
             }

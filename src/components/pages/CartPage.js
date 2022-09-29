@@ -18,18 +18,14 @@ function HomeIcon(props) {
 
 const CartPage = () => {
   const navigate = useNavigate();
-  const { shoppingCart, setShoppingCart } = useShoppingCartContext();
-  const productsArr = Object.keys(shoppingCart.products);
+  const { shoppingCart, handleEmptyCart } = useShoppingCartContext();
   return (
     <Layout>
       <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
-        {productsArr.map((productKey, idx) => {
-          const productCount = shoppingCart.products[productKey].count;
+        {shoppingCart.products.map((product, idx) => {
           return (
-            <div key={`${idx}-${productKey}`}>
-              {productCount > 0 && (
-                <CartItem productKey={productKey}></CartItem>
-              )}
+            <div key={`${idx}-${product}`}>
+              {product.count > 0 && <CartItem product={product}></CartItem>}
             </div>
           );
         })}
@@ -39,10 +35,7 @@ const CartPage = () => {
             variant='contained'
             startIcon={<DeleteIcon />}
             onClick={() => {
-              setShoppingCart({
-                products: {},
-                items: 0,
-              });
+              handleEmptyCart();
             }}
           >
             Empty Cart

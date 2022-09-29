@@ -3,10 +3,8 @@ import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { useUserContext } from '../../context/UserContext';
 
-const UserName = () => {
-  const { user, setUser } = useUserContext();
+const UserName = ({ setEmail }) => {
   return (
     <Box
       sx={{
@@ -28,7 +26,7 @@ const UserName = () => {
         // sx={{ width: '50vw' }}
         onChange={(e) => {
           const email = e.target.value;
-          setUser({ ...user, email });
+          setEmail(email);
         }}
       />
     </Box>

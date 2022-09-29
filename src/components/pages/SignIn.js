@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button } from '@mui/material';
 import UserName from '../textfield/UserName';
 import Password from '../textfield/Password';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../layout/Layout';
 import { useUserContext } from '../../context/UserContext';
+import { sampleUserData } from '../../mockData';
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { signIn, setSignIn } = useUserContext();
+  const { user, signIn, signOut } = useUserContext();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <Layout>
@@ -19,26 +22,26 @@ const SignIn = () => {
         justifyContent={'center'}
         height={'70vh'}
       >
-        {!signIn && (
+        {!user && (
           <>
-            <UserName></UserName>
-            <Password></Password>
+            <UserName setEmail={setEmail}></UserName>
+            <Password setPassword={setPassword}></Password>
           </>
         )}
         <Button
           variant='outlined'
           onClick={() => {
-            if (!signIn) {
-              setSignIn(true);
+            if (!user) {
+              signIn({ ...sampleUserData, email, password });
               navigate('/home');
               return;
             } else {
-              setSignIn(false);
+              signOut();
               return;
             }
           }}
         >
-          {!signIn ? 'Log In' : 'Log Out'}
+          {!user ? 'Log In' : 'Log Out'}
         </Button>
       </Box>
     </Layout>

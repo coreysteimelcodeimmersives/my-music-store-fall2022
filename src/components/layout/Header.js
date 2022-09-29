@@ -24,7 +24,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export default function MenuAppBar() {
   const navigate = useNavigate();
-  const { user, signIn } = useUserContext();
+  const { user } = useUserContext();
   const { shoppingCart } = useShoppingCartContext();
   return (
     <Box sx={{ flexGrow: 1 }} position={'fixed'} width={'100%'}>
@@ -52,7 +52,7 @@ export default function MenuAppBar() {
                 navigate('/sign-in');
               }}
             >
-              {!signIn ? (
+              {!user ? (
                 <AccountCircle />
               ) : (
                 <Avatar
