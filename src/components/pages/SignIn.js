@@ -4,12 +4,14 @@ import UserName from '../textfield/UserName';
 import Password from '../textfield/Password';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../layout/Layout';
-import { useUserContext } from '../../context/UserContext';
 import { sampleUserData } from '../../mockData';
+import { useSelector, useDispatch } from 'react-redux';
+import { signIn, signOut } from '../../redux-state/userSlice';
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { user, signIn, signOut } = useUserContext();
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -32,11 +34,17 @@ const SignIn = () => {
           variant='outlined'
           onClick={() => {
             if (!user) {
-              signIn({ ...sampleUserData, email, password });
+              dispatch(
+                signIn({
+                  ...sampleUserData,
+                  email: email,
+                  password: password,
+                })
+              );
               navigate('/home');
               return;
             } else {
-              signOut();
+              dispatch(signOut());
               return;
             }
           }}

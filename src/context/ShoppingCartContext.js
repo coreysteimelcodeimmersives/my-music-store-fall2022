@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react';
 
+// make this an enum
 const ACTIONS = {
   ADD_TO_CART: 'add-to-cart',
   REMOVE_FROM_CART: 'remove-from-cart',

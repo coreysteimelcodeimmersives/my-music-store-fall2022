@@ -8,48 +8,12 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Box, Button } from '@mui/material';
-import { useShoppingCartContext } from '../../context/ShoppingCartContext';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../redux-state/shoppingCartSlice';
 
 function ProductDisplay(props) {
-  const { shoppingCart, handleAddToCart } = useShoppingCartContext();
+  const dispatch = useDispatch();
   const { productData } = props;
-  // const handleAddToCart = (productData) => {
-  //   const copyShoppingCart = { ...shoppingCart };
-  //   const updateCartItems = copyShoppingCart.items + 1;
-  //   const copyProducts = { ...copyShoppingCart.products };
-  //   if (productData.id in copyProducts) {
-  //     const copyItem = { ...copyProducts[productData.id] };
-  //     const updateCount = copyItem.count + 1;
-  //     const updateTotal = updateCount * productData.price;
-  //     const updateCopyItem = {
-  //       ...copyItem,
-  //       count: updateCount,
-  //       total: updateTotal,
-  //     };
-  //     const updateCopyProducts = {
-  //       ...copyProducts,
-  //       [productData.id]: updateCopyItem,
-  //     };
-  //     const updateCopyShoppingCart = {
-  //       ...copyShoppingCart,
-  //       products: updateCopyProducts,
-  //       items: updateCartItems,
-  //     };
-  //     setShoppingCart(updateCopyShoppingCart);
-  //   } else {
-  //     const newProduct = { ...productData, count: 1, total: productData.price };
-  //     const updateCopyProducts = {
-  //       ...copyProducts,
-  //       [productData.id]: newProduct,
-  //     };
-  //     const updateCopyShoppingCart = {
-  //       ...copyShoppingCart,
-  //       products: updateCopyProducts,
-  //       items: updateCartItems,
-  //     };
-  //     setShoppingCart(updateCopyShoppingCart);
-  //   }
-  // };
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader title={productData.title} subheader={productData.brand} />
@@ -68,7 +32,7 @@ function ProductDisplay(props) {
         <Box display='flex' justifyContent='space-between' width={1}>
           <Button
             onClick={() => {
-              handleAddToCart(productData);
+              dispatch(addToCart(productData));
             }}
           >
             Add to cart

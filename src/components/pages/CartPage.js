@@ -6,7 +6,8 @@ import SvgIcon from '@mui/material/SvgIcon';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 import CartItem from '../cart/CartItem';
-import { useShoppingCartContext } from '../../context/ShoppingCartContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { emptyCart } from '../../redux-state/shoppingCartSlice';
 
 function HomeIcon(props) {
   return (
@@ -18,7 +19,8 @@ function HomeIcon(props) {
 
 const CartPage = () => {
   const navigate = useNavigate();
-  const { shoppingCart, handleEmptyCart } = useShoppingCartContext();
+  const shoppingCart = useSelector((state) => state.shoppingCart);
+  const dispatch = useDispatch();
   return (
     <Layout>
       <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
@@ -35,7 +37,7 @@ const CartPage = () => {
             variant='contained'
             startIcon={<DeleteIcon />}
             onClick={() => {
-              handleEmptyCart();
+              dispatch(emptyCart());
             }}
           >
             Empty Cart

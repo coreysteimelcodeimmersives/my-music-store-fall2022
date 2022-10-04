@@ -8,15 +8,13 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { useUserContext } from '../../context/UserContext';
 
 export default function Password({ setPassword }) {
   const [passwordText, setPasswordText] = useState({ password: '' });
-  const { user, signIn, signOut } = useUserContext();
 
   const handleChange = (prop) => (event) => {
     setPasswordText({ ...passwordText, [prop]: event.target.value });
-    setPassword(passwordText);
+    setPassword(event.target.value);
   };
 
   const handleClickShowPassword = () => {

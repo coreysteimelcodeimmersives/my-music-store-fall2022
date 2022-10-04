@@ -1,36 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { useShoppingCartContext } from '../../context/ShoppingCartContext';
 import Button from '@mui/material/Button';
 import { ButtonGroup } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import {
+  addToCart,
+  deleteItemFromCart,
+  removeFromCart,
+} from '../../redux-state/shoppingCartSlice';
 
 const CartItem = ({ product }) => {
-  const { handleAddToCart, handleRemoveFromCart, handleDeleteItemFromCart } =
-    useShoppingCartContext();
-  // const handleDeleteItem = (productKey) => {
-  //   const copyShoppingCart = { ...shoppingCart };
-  //   const updateCartItems = copyShoppingCart.items - 1;
-  //   const copyProducts = { ...copyShoppingCart.products };
-  //   const copyItem = { ...copyProducts[productKey] };
-  //   const updateCount = copyItem.count - 1;
-  //   const updateTotal = updateCount * copyItem.price;
-  //   const updateCopyItem = {
-  //     ...copyItem,
-  //     count: updateCount,
-  //     total: updateTotal,
-  //   };
-  //   const updateCopyProducts = {
-  //     ...copyProducts,
-  //     [productKey]: updateCopyItem,
-  //   };
-  //   const updateCopyShoppingCart = {
-  //     copyShoppingCart,
-  //     products: updateCopyProducts,
-  //     items: updateCartItems,
-  //   };
-  //   setShoppingCart(updateCopyShoppingCart);
-  // };
+  const dispatch = useDispatch();
+
   return (
     <Box
       mb={2}
@@ -61,14 +43,14 @@ const CartItem = ({ product }) => {
         <ButtonGroup size='small' aria-label='small outlined button group'>
           <Button
             onClick={() => {
-              handleAddToCart(product);
+              dispatch(addToCart(product));
             }}
           >
             +
           </Button>
           <Button
             onClick={() => {
-              handleRemoveFromCart(product);
+              dispatch(removeFromCart(product));
             }}
           >
             -
@@ -77,7 +59,7 @@ const CartItem = ({ product }) => {
         <DeleteForeverIcon
           sx={{ paddingLeft: '10%' }}
           onClick={() => {
-            handleDeleteItemFromCart(product);
+            dispatch(deleteItemFromCart(product));
           }}
         ></DeleteForeverIcon>
       </Box>

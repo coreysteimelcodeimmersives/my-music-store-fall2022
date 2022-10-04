@@ -10,8 +10,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Avatar } from '@mui/material';
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
-import { useUserContext } from '../../context/UserContext';
-import { useShoppingCartContext } from '../../context/ShoppingCartContext';
+import { useSelector } from 'react-redux';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -24,8 +23,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export default function MenuAppBar() {
   const navigate = useNavigate();
-  const { user } = useUserContext();
-  const { shoppingCart } = useShoppingCartContext();
+  const user = useSelector((state) => state.user);
+  const shoppingCart = useSelector((state) => state.shoppingCart);
   return (
     <Box sx={{ flexGrow: 1 }} position={'fixed'} width={'100%'}>
       <AppBar position='static' bgcolor='red'>
