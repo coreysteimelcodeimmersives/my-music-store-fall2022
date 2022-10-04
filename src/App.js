@@ -3,7 +3,6 @@ import './App.css';
 import CartPage from './components/pages/CartPage';
 import HomePage from './components/pages/HomePage';
 import SignIn from './components/pages/SignIn';
-import ShoppingCartContextProvider from './context/ShoppingCartContext';
 import CustomThemeProvider from './CustomThemeProvider';
 import store from './redux-state/store';
 import { Provider } from 'react-redux';
