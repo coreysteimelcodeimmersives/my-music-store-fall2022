@@ -9,12 +9,12 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-export default function Password({ setPassword }) {
+export default function Password({ userRegForm, setUserRegForm }) {
   const [passwordText, setPasswordText] = useState({ password: '' });
 
   const handleChange = (prop) => (event) => {
     setPasswordText({ ...passwordText, [prop]: event.target.value });
-    setPassword(event.target.value);
+    setUserRegForm({ ...userRegForm, password: event.target.value });
   };
 
   const handleClickShowPassword = () => {
@@ -34,6 +34,7 @@ export default function Password({ setPassword }) {
         <FormControl
           variant='outlined'
           // sx={{ width: '30vw' }}
+          required
         >
           <InputLabel htmlFor='outlined-adornment-password'>
             Password
