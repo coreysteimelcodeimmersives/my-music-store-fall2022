@@ -29,7 +29,7 @@ export default function Password({ userRegForm, setUserRegForm }) {
   };
 
   return (
-    <Box sx={{ display: 'flex', margin: '1%' }}>
+    <Box sx={{ display: 'flex', margin: '3%' }}>
       <div>
         <FormControl
           variant='outlined'

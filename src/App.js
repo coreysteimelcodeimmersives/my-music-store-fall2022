@@ -17,10 +17,7 @@ function App() {
             <Route path='/sign-in' element={<SignIn />} />
             <Route path='/' element={<HomePage />} />
             <Route path='/cart' element={<CartPage />} />
-            <Route
-              path='/user-registration'
-              element={<UserRegistrationPage />}
-            />
+            <Route path='/register-user' element={<UserRegistrationPage />} />
           </Routes>
         </BrowserRouter>
       </CustomThemeProvider>

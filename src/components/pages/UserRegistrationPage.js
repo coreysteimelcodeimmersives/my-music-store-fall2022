@@ -4,13 +4,14 @@ import UserName from '../textfield/UserName';
 import Password from '../textfield/Password';
 import TextField from '@mui/material/TextField';
 import { Box, Button } from '@mui/material';
-import axios from 'axios';
 import Axios from '../../utils/Axios';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../redux-state/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { Typography } from '@mui/material';
 
 const UserRegistrationPage = () => {
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [userRegForm, setUserRegForm] = useState({
@@ -24,15 +25,21 @@ const UserRegistrationPage = () => {
   const handleSubmit = async (event) => {
     // make sure our form is correct ... validation ... mui
     event.preventDefault();
-    // if everything is valid in the form, submit the network request
-    const response = await Axios.post('/register-user', {
-      ...userRegForm,
-    });
 
-    const { user } = response.data;
-    dispatch(signIn(user));
-    navigate('/');
-    // recieve user information from server and put it in the state
+    try {
+      // if everything is valid in the form, submit the network request
+      const response = await Axios.post('/register-user', {
+        ...userRegForm,
+      });
+
+      // recieve user information from server and put it in the state
+      const { user } = response.data;
+      dispatch(signIn(user));
+      navigate('/');
+    } catch (e) {
+      console.log(e);
+      setError(e.message);
+    }
   };
 
   return (
@@ -89,6 +96,9 @@ const UserRegistrationPage = () => {
           <Button variant='outlined' type='form'>
             Submit
           </Button>
+          <Box sx={{ margin: '5%' }}>
+            <Typography sx={{ color: 'red' }}>{error}</Typography>
+          </Box>
         </Box>
       </form>
     </Layout>

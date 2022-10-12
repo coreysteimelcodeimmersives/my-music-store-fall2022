@@ -9,7 +9,7 @@ const UserName = ({ userRegForm, setUserRegForm }) => {
     <Box
       sx={{
         display: 'flex',
-        margin: '1%',
+        margin: '3%',
       }}
     >
       <TextField
