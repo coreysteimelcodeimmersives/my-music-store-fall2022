@@ -21,8 +21,8 @@ const SignIn = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!user) {
-      try {
+    try {
+      if (!user) {
         // call back end with credentials data
         const response = await Axios.post('/sign-in', {
           credentials: userRegForm,
@@ -31,10 +31,15 @@ const SignIn = () => {
         //insert the response user into the state
         const fetchedUser = response.data.user;
         dispatch(signIn(fetchedUser));
+        setError('');
         navigate('/');
-      } catch (error) {}
-    } else {
-      dispatch(signOut());
+      } else {
+        await Axios.get('/sign-out');
+        dispatch(signOut());
+        setError('');
+      }
+    } catch (e) {
+      setError(e.message);
     }
   };
 
@@ -75,9 +80,9 @@ const SignIn = () => {
               </Typography>
             </Box>
           )}
-        </Box>
-        <Box sx={{ margin: '5%' }}>
-          <Typography sx={{ color: 'red' }}>{error}</Typography>
+          <Box sx={{ margin: '3%' }}>
+            <Typography sx={{ color: 'red' }}>{error}</Typography>
+          </Box>
         </Box>
       </form>
     </Layout>
