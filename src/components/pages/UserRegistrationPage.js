@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import TextField from '@mui/material/TextField';
+import { Box, Button, Typography } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Axios from '../../utils/Axios';
+
+import { signIn } from '../../redux-state/userSlice';
+
 import Layout from '../layout/Layout';
 import UserName from '../textfield/UserName';
 import Password from '../textfield/Password';
-import TextField from '@mui/material/TextField';
-import { Box, Button } from '@mui/material';
-import Axios from '../../utils/Axios';
-import { useDispatch } from 'react-redux';
-import { signIn } from '../../redux-state/userSlice';
-import { useNavigate } from 'react-router-dom';
-import { Typography } from '@mui/material';
 
 const UserRegistrationPage = () => {
   const [error, setError] = useState('');
@@ -39,6 +40,8 @@ const UserRegistrationPage = () => {
     } catch (e) {
       console.log(e);
       setError(e.message);
+      // use for error handling func
+      //   setError(e.response.data);
     }
   };
 

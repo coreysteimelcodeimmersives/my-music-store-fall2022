@@ -19,10 +19,6 @@ const SignIn = () => {
     password: '',
   });
 
-  // const handleLogOut = () => {
-  //   dispatch(signOut());
-  // };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!user) {
