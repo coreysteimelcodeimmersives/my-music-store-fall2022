@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../layout/Layout';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -21,6 +21,12 @@ const CartPage = () => {
   const navigate = useNavigate();
   const shoppingCart = useSelector((state) => state.shoppingCart);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  useEffect(() => {
+    if (!user) {
+      navigate('/sign-in');
+    }
+  }, []);
   return (
     <Layout>
       <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -8,12 +8,23 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Box, Button } from '@mui/material';
-import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux-state/shoppingCartSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import Axios from '../../utils/Axios';
+import { signIn } from '../../redux-state/userSlice';
 
 function ProductDisplay(props) {
   const dispatch = useDispatch();
   const { productData } = props;
+  const user = useSelector((state) => state.user);
+  const isFavorite = user.favorites.includes(productData.id);
+  const handleFavoriteClick = async () => {
+    const response = await Axios.post('/update-favorites', {
+      productId: productData.id,
+    });
+    dispatch(signIn(response.data.user));
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader title={productData.title} subheader={productData.brand} />
@@ -37,7 +48,11 @@ function ProductDisplay(props) {
           >
             Add to cart
           </Button>
-          <IconButton aria-label='add to favorites'>
+          <IconButton
+            color={isFavorite ? 'error' : undefined}
+            aria-label='add to favorites'
+            onClick={handleFavoriteClick}
+          >
             <FavoriteIcon />
           </IconButton>
         </Box>

@@ -17,14 +17,14 @@ const CartItem = ({ product }) => {
     <Box
       mb={2}
       sx={{ border: 'solid 2px grey', borderRadius: '16px' }}
-      display={'flex'}
-      flexDirection={'row'}
-      alignItems={'spaceBetween'}
+      display='flex'
+      flexDirection='row'
+      alignItems='spaceBetween'
       padding='10px'
-      width={'80vw'}
+      width='80vw'
     >
       <Box padding='10px'>
-        <img src={product.image} width={'50vw'}></img>
+        <img src={product.image} width={'50vw'} alt='product'></img>
       </Box>
       <Box display={'flex'} flexDirection={'column'} padding='5px'>
         <Box padding={'5px'}>

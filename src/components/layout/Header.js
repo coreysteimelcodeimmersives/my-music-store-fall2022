@@ -35,7 +35,7 @@ export default function MenuAppBar() {
             component='div'
             sx={{ flexGrow: 1, '&:hover': { cursor: 'pointer' } }}
             onClick={() => {
-              navigate('/home');
+              navigate('/');
             }}
           >
             MyMusicStore.com

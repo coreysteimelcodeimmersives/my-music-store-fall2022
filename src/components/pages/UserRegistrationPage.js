@@ -35,10 +35,10 @@ const UserRegistrationPage = () => {
 
       // recieve user information from server and put it in the state
       const { user } = response.data;
+      setError('');
       dispatch(signIn(user));
       navigate('/');
     } catch (e) {
-      console.log(e);
       setError(e.message);
       // use for error handling func
       //   setError(e.response.data);
